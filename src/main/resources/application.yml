@@ -1,0 +1,50 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: corebridge-demo
+
+  # H2 인메모리 DB
+  datasource:
+    url: jdbc:h2:mem:corebridge;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        default_batch_fetch_size: 100
+    open-in-view: false
+
+  # Jackson
+  jackson:
+    default-property-inclusion: non_null
+
+# JWT
+jwt:
+  secret: corebridge-demo-secret-key-must-be-at-least-256-bits-long-for-hs256
+  access-token-expiration: 1800000      # 30분
+  refresh-token-expiration: 604800000   # 7일
+
+# Snowflake ID (워커 1개)
+snowflake:
+  datacenter-id: 1
+  worker-id: 1
+
+# Logging
+logging:
+  level:
+    root: INFO
+    halo.corebridge.demo: DEBUG
+    org.springframework.security: INFO

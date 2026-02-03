@@ -1,0 +1,1 @@
+const d=[{boardId:1,name:"전체",description:"모든 채용공고"},{boardId:2,name:"IT/개발",description:"IT 및 개발 직군"},{boardId:3,name:"마케팅",description:"마케팅 직군"},{boardId:4,name:"디자인",description:"디자인 직군"},{boardId:5,name:"영업",description:"영업 직군"}];export{d as D};

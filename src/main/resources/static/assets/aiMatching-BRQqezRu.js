@@ -1,0 +1,1 @@
+import{L as a}from"./index-BwYT7rAB.js";const s="/api/v1/ai-matching",o=12e4,i=async t=>await a.post(`${s}/match`,t,{timeout:o}),c=async t=>await a.post(`${s}/score`,t,{timeout:o}),e=async t=>await a.post(`${s}/match-jobpostings`,t,{timeout:o}),p=async t=>await a.post(`${s}/skill-gap`,t,{timeout:o});export{e as a,p as b,i as m,c as s};

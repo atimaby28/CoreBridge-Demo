@@ -1,0 +1,1 @@
+import{R as s}from"./index-BwYT7rAB.js";const e="/api/v1/resumes",r=async()=>await s.get(`${e}/me`),n=async t=>await s.put(`${e}/me`,t),o=async()=>await s.get(`${e}/me/versions`),i=async t=>await s.get(`${e}/me/versions/${t}`),c=async t=>await s.post(`${e}/me/versions/${t}/restore`),u=async()=>await s.post(`${e}/me/analyze`);export{o as a,i as b,u as c,r as g,c as r,n as u};
