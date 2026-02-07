@@ -30,5 +30,14 @@ logs/
 
 # === Env ===
 .env
-.env.local
+.env.*
+!.env.example
 application-local.yml
+
+# === Gradle Wrapper ===
+gradle/
+gradlew
+gradlew.bat
+
+# === npm ===
+package-lock.json
