@@ -59,6 +59,13 @@ public class SecurityConfig {
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/actuator/**").permitAll()
 
+                        // ===== SPA 라우트 (Vue Router History Mode) =====
+                        // WebConfig에서 index.html로 포워딩되므로 Security에서 허용 필요
+                        .requestMatchers("/home", "/portfolio").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/jobpostings/**").permitAll()
+                        .requestMatchers("/company/**", "/my/**", "/profile", "/notifications").permitAll()
+
                         // ===== Admin API =====
                         .requestMatchers("/api/v1/users/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
