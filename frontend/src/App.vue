@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import AppHeader from '@/components/common/AppHeader.vue'
 import AppSidebar from '@/components/common/AppSidebar.vue'
+import AppFooter from '@/components/common/AppFooter.vue'
 
 const route = useRoute()
 const authStore = useAuthStore()
@@ -24,9 +25,12 @@ const isAuthPage = computed(() => route.path.startsWith('/auth'))
       <AppHeader />
       <div class="flex">
         <AppSidebar />
-        <main class="flex-1 p-6 ml-64 mt-16">
-          <router-view />
-        </main>
+        <div class="flex-1 ml-64 mt-16 flex flex-col min-h-[calc(100vh-4rem)]">
+          <main class="flex-1 p-6">
+            <router-view />
+          </main>
+          <AppFooter />
+        </div>
       </div>
     </template>
   </div>

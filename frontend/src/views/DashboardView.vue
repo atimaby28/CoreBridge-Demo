@@ -344,7 +344,7 @@ onMounted(async () => {
       <div class="card">
         <div class="flex justify-between items-center mb-4">
           <h2 class="text-lg font-semibold text-gray-900">📋 최근 API 요청</h2>
-          <router-link to="/admin/audit" class="text-sm text-primary-600 hover:text-primary-700">
+          <router-link to="/admin/audits" class="text-sm text-primary-600 hover:text-primary-700">
             전체보기 →
           </router-link>
         </div>

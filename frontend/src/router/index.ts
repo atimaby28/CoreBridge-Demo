@@ -161,6 +161,16 @@ const routes: RouteRecordRaw[] = [
     meta: { requiresAuth: true },
   },
 
+  // ============================================
+  // 포트폴리오
+  // ============================================
+  {
+    path: '/portfolio',
+    name: 'Portfolio',
+    component: () => import('@/views/PortfolioView.vue'),
+    meta: { requiresAuth: true },
+  },
+
   // 404
   {
     path: '/:pathMatch(.*)*',

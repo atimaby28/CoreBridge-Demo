@@ -14,6 +14,18 @@ const form = ref({
 const error = ref('')
 const loading = ref(false)
 
+// 데모 계정 정보
+const demoAccounts = [
+  { role: '구직자', icon: '👤', email: 'user@demo.com', password: 'qwer1234', color: 'blue' },
+  { role: '기업', icon: '🏢', email: 'company@demo.com', password: 'qwer1234', color: 'emerald' },
+  { role: '관리자', icon: '🛡️', email: 'admin@demo.com', password: 'qwer1234', color: 'purple' },
+]
+
+function fillDemoAccount(account: typeof demoAccounts[0]) {
+  form.value.email = account.email
+  form.value.password = account.password
+}
+
 // 리다이렉트 경로
 const redirectPath = ref('/')
 
@@ -108,6 +120,47 @@ async function handleSubmit(): Promise<void> {
           <span v-else>로그인</span>
         </button>
       </form>
+
+      <!-- 데모 계정 안내 -->
+      <div class="mt-6">
+        <div class="relative">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-200"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-3 bg-gray-50 text-gray-500">데모 계정으로 빠른 로그인</span>
+          </div>
+        </div>
+
+        <div class="mt-4 space-y-2">
+          <button
+            v-for="account in demoAccounts"
+            :key="account.email"
+            @click="fillDemoAccount(account)"
+            class="w-full flex items-center gap-3 px-4 py-3 rounded-lg border-2 transition-all duration-200 text-left group"
+            :class="form.email === account.email
+              ? 'border-primary-500 bg-primary-50 shadow-sm'
+              : 'border-gray-200 bg-white hover:border-primary-300 hover:bg-gray-50'"
+          >
+            <span class="text-xl flex-shrink-0">{{ account.icon }}</span>
+            <div class="flex-1 min-w-0">
+              <div class="font-semibold text-sm text-gray-900">{{ account.role }}</div>
+              <div class="text-xs text-gray-500 font-mono truncate">{{ account.email }}</div>
+            </div>
+            <div class="flex-shrink-0 text-xs font-mono text-gray-400 bg-gray-100 px-2 py-1 rounded">
+              qwer1234
+            </div>
+            <svg
+              class="w-4 h-4 flex-shrink-0 transition-transform duration-200"
+              :class="form.email === account.email ? 'text-primary-500' : 'text-gray-300 group-hover:text-gray-400 group-hover:translate-x-0.5'"
+              fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            >
+              <path v-if="form.email === account.email" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              <path v-else stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>

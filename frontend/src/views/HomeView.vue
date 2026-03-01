@@ -4,21 +4,42 @@
 
 <template>
   <div class="space-y-8">
-    <!-- 히어로 섹션 -->
-    <div class="card bg-gradient-to-r from-primary-600 to-primary-700 text-white">
-      <div class="py-8 px-4 text-center">
-        <h1 class="text-4xl font-bold mb-4">CoreBridge</h1>
-        <p class="text-xl text-primary-100 mb-8">
-          채용 관리의 모든 것을 한 곳에서
-        </p>
-        <div class="flex justify-center space-x-4">
-          <router-link to="/auth/signup" class="btn bg-white text-primary-600 hover:bg-gray-100 px-8 py-3">
-            시작하기
-          </router-link>
-          <router-link to="/auth/login" class="btn border border-white text-white hover:bg-primary-500 px-8 py-3">
-            로그인
-          </router-link>
+    <!-- 타이틀 -->
+    <div class="card bg-gradient-to-r from-primary-50 to-blue-50 border border-primary-100 py-8 text-center">
+      <h1 class="text-4xl font-bold mb-2">
+        <span class="bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent">CoreBridge</span>
+      </h1>
+      <p class="text-lg text-gray-500">채용 관리의 모든 것을 한 곳에서</p>
+    </div>
+
+    <!-- 데모 계정 안내 -->
+    <div class="card py-8 px-6">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2 text-center">데모 체험하기</h2>
+      <p class="text-gray-500 mb-6 text-center">아래 계정으로 바로 로그인하여 기능을 체험해보세요</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
+        <div class="border-2 border-blue-200 bg-blue-50 rounded-lg p-4 text-center">
+          <span class="text-2xl">👤</span>
+          <div class="font-semibold text-gray-900 mt-2">구직자</div>
+          <div class="text-xs font-mono text-gray-500 mt-1">user@demo.com</div>
+          <div class="text-xs font-mono text-gray-400 mt-1">qwer1234</div>
         </div>
+        <div class="border-2 border-emerald-200 bg-emerald-50 rounded-lg p-4 text-center">
+          <span class="text-2xl">🏢</span>
+          <div class="font-semibold text-gray-900 mt-2">기업</div>
+          <div class="text-xs font-mono text-gray-500 mt-1">company@demo.com</div>
+          <div class="text-xs font-mono text-gray-400 mt-1">qwer1234</div>
+        </div>
+        <div class="border-2 border-purple-200 bg-purple-50 rounded-lg p-4 text-center">
+          <span class="text-2xl">🛡️</span>
+          <div class="font-semibold text-gray-900 mt-2">관리자</div>
+          <div class="text-xs font-mono text-gray-500 mt-1">admin@demo.com</div>
+          <div class="text-xs font-mono text-gray-400 mt-1">qwer1234</div>
+        </div>
+      </div>
+      <div class="text-center mt-6">
+        <router-link to="/auth/login" class="btn btn-primary px-8 py-3">
+          로그인하러 가기
+        </router-link>
       </div>
     </div>
 
@@ -53,15 +74,6 @@
         <h3 class="text-lg font-semibold text-gray-900 mb-2">면접 일정</h3>
         <p class="text-gray-500">면접 일정을 쉽게 관리하고 알림을 받으세요</p>
       </div>
-    </div>
-
-    <!-- CTA -->
-    <div class="card text-center py-12">
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">지금 바로 시작하세요</h2>
-      <p class="text-gray-500 mb-6">무료로 가입하고 채용 관리를 시작해보세요</p>
-      <router-link to="/auth/signup" class="btn btn-primary px-8 py-3">
-        무료로 시작하기
-      </router-link>
     </div>
   </div>
 </template>

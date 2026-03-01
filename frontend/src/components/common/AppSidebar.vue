@@ -8,6 +8,7 @@ interface MenuItem {
   icon: string
   path?: string
   children?: { name: string; path: string }[]
+  divider?: boolean
 }
 
 const route = useRoute()
@@ -88,6 +89,7 @@ const menuItems = computed<MenuItem[]>(() => {
 
   // 공통 - 내 정보
   items.push({ name: '내 정보', icon: 'user', path: '/profile' })
+  items.push({ name: '포트폴리오', icon: 'portfolio', path: '/portfolio', divider: true })
 
   return items
 })
@@ -104,6 +106,8 @@ function isActive(path: string): boolean {
   <aside class="fixed left-0 top-16 bottom-0 w-64 bg-white border-r border-gray-200 overflow-y-auto">
     <nav class="p-4 space-y-1">
       <template v-for="item in menuItems" :key="item.path || item.name">
+        <!-- 구분선 -->
+        <div v-if="item.divider" class="border-t border-gray-200 my-2"></div>
         <!-- 단일 메뉴 -->
         <router-link
           v-if="item.path"
@@ -145,6 +149,9 @@ function isActive(path: string): boolean {
           </svg>
           <svg v-else-if="item.icon === 'user'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+          <svg v-else-if="item.icon === 'portfolio'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
           </svg>
           <span>{{ item.name }}</span>
         </router-link>
