@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoreBridge-MSA API Documentation</title>
+    <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        .cb-header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            padding: 24px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .cb-header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .cb-logo {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
+            letter-spacing: -1px;
+        }
+
+        .cb-title {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .cb-subtitle {
+            font-size: 13px;
+            color: #8892b0;
+            margin-top: 2px;
+        }
+
+        .cb-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cb-selector label {
+            font-size: 13px;
+            color: #8892b0;
+            font-weight: 500;
+        }
+
+        .cb-selector select {
+            padding: 8px 36px 8px 14px;
+            border-radius: 8px;
+            border: 1px solid #2a3a5c;
+            background: #0d1b2a;
+            color: #ccd6f6;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238892b0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            min-width: 240px;
+            transition: border-color 0.2s;
+        }
+
+        .cb-selector select:hover {
+            border-color: #e94560;
+        }
+
+        .cb-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: rgba(233, 69, 96, 0.15);
+            border: 1px solid rgba(233, 69, 96, 0.3);
+            border-radius: 20px;
+            font-size: 11px;
+            color: #e94560;
+            font-weight: 600;
+        }
+
+        .cb-badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #e94560;
+        }
+
+        .cb-info-bar {
+            background: #f0f4ff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 10px 32px;
+            display: flex;
+            gap: 24px;
+            font-size: 12px;
+            color: #64748b;
+            flex-wrap: wrap;
+        }
+
+        .cb-info-bar span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cb-info-bar strong {
+            color: #334155;
+        }
+
+        #swagger-ui .topbar { display: none; }
+        #swagger-ui .information-container { display: none; }
+
+        #swagger-ui {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .loading-state {
+            text-align: center;
+            padding: 80px 20px;
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        .loading-state .spinner {
+            width: 36px;
+            height: 36px;
+            border: 3px solid #e2e8f0;
+            border-top-color: #e94560;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="cb-header">
+        <div class="cb-header-left">
+            <div class="cb-logo">CB</div>
+            <div>
+                <div class="cb-title">CoreBridge-MSA</div>
+                <div class="cb-subtitle">Microservice API Documentation · v1.0.0</div>
+            </div>
+        </div>
+        <div class="cb-selector">
+            <label for="service-select">Service:</label>
+            <select id="service-select"></select>
+            <span class="cb-badge">
+                <span class="cb-badge-dot"></span>
+                Static Docs
+            </span>
+        </div>
+    </div>
+
+    <div class="cb-info-bar">
+        <span>📐 <strong>Architecture:</strong> 12 Microservices + API Gateway</span>
+        <span>🔧 <strong>Patterns:</strong> Outbox · CQRS · Circuit Breaker · Event-Driven</span>
+        <span>🔗 <strong>Demo:</strong> <a href="https://corebridge.cloud" target="_blank" style="color:#e94560;">corebridge.cloud</a></span>
+    </div>
+
+    <div id="swagger-ui">
+        <div class="loading-state">
+            <div class="spinner"></div>
+            서비스를 선택하면 API 문서가 표시됩니다.
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui-bundle.js"></script>
+
+    <script>
+        const SERVICES = [
+            { name: "User Service", file: "user-service.json", port: 8001, desc: "회원가입, 로그인, JWT 인증" },
+            { name: "Jobposting Service", file: "jobposting-service.json", port: 8002, desc: "채용공고 CRUD (Outbox Pattern)" },
+            { name: "Jobposting Comment", file: "jobposting-comment-service.json", port: 8003, desc: "채용공고 댓글" },
+            { name: "Jobposting View", file: "jobposting-view-service.json", port: 8004, desc: "채용공고 조회수 집계" },
+            { name: "Jobposting Like", file: "jobposting-like-service.json", port: 8005, desc: "채용공고 좋아요" },
+            { name: "Jobposting Hot", file: "jobposting-hot-service.json", port: 8006, desc: "인기 채용공고 (CQRS+Batch)" },
+            { name: "Jobposting Read", file: "jobposting-read-service.json", port: 8007, desc: "채용공고 조회 (Circuit Breaker)" },
+            { name: "Resume Service", file: "resume-service.json", port: 8008, desc: "이력서 관리" },
+            { name: "Apply Service", file: "apply-service.json", port: 8009, desc: "지원 관리, AI 매칭" },
+            { name: "Notification Service", file: "notification-service.json", port: 8010, desc: "알림 (Event-Driven)" },
+            { name: "Schedule Service", file: "schedule-service.json", port: 8011, desc: "면접 일정 관리" },
+            { name: "Admin Audit", file: "admin-audit-service.json", port: 8012, desc: "관리자 감사 로그" }
+        ];
+
+        const select = document.getElementById('service-select');
+
+        SERVICES.forEach((svc, idx) => {
+            const opt = document.createElement('option');
+            opt.value = idx;
+            opt.textContent = `${svc.name} (:${svc.port}) — ${svc.desc}`;
+            select.appendChild(opt);
+        });
+
+        let swaggerUI = null;
+
+        function loadService(index) {
+            const svc = SERVICES[index];
+
+            if (swaggerUI) {
+                swaggerUI = null;
+                document.getElementById('swagger-ui').innerHTML = '';
+            }
+
+            swaggerUI = SwaggerUIBundle({
+                url: `./api-docs/${svc.file}`,
+                dom_id: '#swagger-ui',
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIBundle.SwaggerUIStandalonePreset
+                ],
+                layout: "BaseLayout",
+                deepLinking: true,
+                defaultModelsExpandDepth: 1,
+                defaultModelExpandDepth: 1,
+                docExpansion: "list",
+                filter: true,
+                showExtensions: true,
+                supportedSubmitMethods: [] // Try it out 비활성화 (정적이라 요청 불가)
+            });
+        }
+
+        select.addEventListener('change', (e) => loadService(e.target.value));
+        loadService(0);
+    </script>
+</body>
+</html>

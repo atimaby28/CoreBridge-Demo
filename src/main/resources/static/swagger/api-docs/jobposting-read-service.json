@@ -1,0 +1,220 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "CoreBridge - jobposting-read-service",
+        "description": "CoreBridge MSA - jobposting-read-service API \uba85\uc138",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8007",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/api/v1/jobposting-read": {
+            "get": {
+                "tags": [
+                    "jobposting-read-controller"
+                ],
+                "operationId": "readAll",
+                "parameters": [
+                    {
+                        "name": "boardId",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponsePageResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/jobposting-read/{jobpostingId}": {
+            "get": {
+                "tags": [
+                    "jobposting-read-controller"
+                ],
+                "operationId": "read",
+                "parameters": [
+                    {
+                        "name": "jobpostingId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/circuit-breakers": {
+            "get": {
+                "tags": [
+                    "circuit-breaker-controller"
+                ],
+                "operationId": "getCircuitBreakerStatus",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BaseResponsePageResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/PageResponse"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "PageResponse": {
+                "type": "object",
+                "properties": {
+                    "jobpostings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Response"
+                        }
+                    },
+                    "jobpostingCount": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "Response": {
+                "type": "object",
+                "properties": {
+                    "jobpostingId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "boardId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "userId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "nickname": {
+                        "type": "string"
+                    },
+                    "viewCount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "likeCount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "commentCount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "BaseResponseResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/Response"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            }
+        }
+    }
+}

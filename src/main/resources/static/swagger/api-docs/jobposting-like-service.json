@@ -1,0 +1,215 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "CoreBridge - jobposting-like",
+        "description": "CoreBridge MSA - jobposting-like API \uba85\uc138",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8005",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/api/v1/jobposting-likes/jobpostings/{jobpostingId}": {
+            "get": {
+                "tags": [
+                    "jobposting-like-controller"
+                ],
+                "operationId": "read",
+                "parameters": [
+                    {
+                        "name": "jobpostingId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseJobpostingLikeResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "jobposting-like-controller"
+                ],
+                "operationId": "like",
+                "parameters": [
+                    {
+                        "name": "jobpostingId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseVoid"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "jobposting-like-controller"
+                ],
+                "operationId": "unlike",
+                "parameters": [
+                    {
+                        "name": "jobpostingId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseVoid"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/jobposting-likes/jobpostings/{jobpostingId}/count": {
+            "get": {
+                "tags": [
+                    "jobposting-like-controller"
+                ],
+                "operationId": "count",
+                "parameters": [
+                    {
+                        "name": "jobpostingId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseLong"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BaseResponseVoid": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "object"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "BaseResponseJobpostingLikeResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/JobpostingLikeResponse"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "JobpostingLikeResponse": {
+                "type": "object",
+                "properties": {
+                    "jobpostingLikeId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "jobpostingId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "userId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "liked": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "BaseResponseLong": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            }
+        }
+    }
+}

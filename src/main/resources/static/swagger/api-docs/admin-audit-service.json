@@ -1,0 +1,670 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "CoreBridge - admin-audit-service",
+        "description": "CoreBridge MSA - admin-audit-service API \uba85\uc138",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8012",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/api/v1/admin/audits": {
+            "get": {
+                "tags": [
+                    "audit-controller"
+                ],
+                "operationId": "getRecentPaged",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 0
+                        }
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 20
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseAuditPageResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "audit-controller"
+                ],
+                "operationId": "log",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseAuditResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/audits/{auditId}": {
+            "get": {
+                "tags": [
+                    "audit-controller"
+                ],
+                "operationId": "getById",
+                "parameters": [
+                    {
+                        "name": "auditId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseAuditResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/audits/users/{userId}": {
+            "get": {
+                "tags": [
+                    "audit-controller"
+                ],
+                "operationId": "getByUser",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseListAuditResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/audits/stats": {
+            "get": {
+                "tags": [
+                    "audit-controller"
+                ],
+                "operationId": "getStats",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseAuditStatsResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/audits/services/{serviceName}": {
+            "get": {
+                "tags": [
+                    "audit-controller"
+                ],
+                "operationId": "getByService",
+                "parameters": [
+                    {
+                        "name": "serviceName",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseListAuditResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/audits/recent": {
+            "get": {
+                "tags": [
+                    "audit-controller"
+                ],
+                "operationId": "getRecent",
+                "parameters": [
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 100
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseAuditPageResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/audits/range": {
+            "get": {
+                "tags": [
+                    "audit-controller"
+                ],
+                "operationId": "getByDateRange",
+                "parameters": [
+                    {
+                        "name": "startDate",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "endDate",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseListAuditResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/audits/events/{eventType}": {
+            "get": {
+                "tags": [
+                    "audit-controller"
+                ],
+                "operationId": "getByEventType",
+                "parameters": [
+                    {
+                        "name": "eventType",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "LOGIN",
+                                "LOGOUT",
+                                "LOGIN_FAILED",
+                                "USER_CREATE",
+                                "USER_UPDATE",
+                                "USER_DELETE",
+                                "JOBPOSTING_CREATE",
+                                "JOBPOSTING_UPDATE",
+                                "JOBPOSTING_DELETE",
+                                "JOBPOSTING_READ",
+                                "APPLICATION_CREATE",
+                                "APPLICATION_CANCEL",
+                                "APPLICATION_STATUS_CHANGE",
+                                "RESUME_CREATE",
+                                "RESUME_UPDATE",
+                                "RESUME_DELETE",
+                                "SCHEDULE_CREATE",
+                                "SCHEDULE_UPDATE",
+                                "SCHEDULE_CANCEL",
+                                "NOTIFICATION_READ",
+                                "API_REQUEST",
+                                "SYSTEM_ERROR",
+                                "UNKNOWN"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseListAuditResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/audits/errors": {
+            "get": {
+                "tags": [
+                    "audit-controller"
+                ],
+                "operationId": "getErrors",
+                "parameters": [
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 50
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseListAuditResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CreateRequest": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "userEmail": {
+                        "type": "string"
+                    },
+                    "serviceName": {
+                        "type": "string"
+                    },
+                    "eventType": {
+                        "type": "string",
+                        "enum": [
+                            "LOGIN",
+                            "LOGOUT",
+                            "LOGIN_FAILED",
+                            "USER_CREATE",
+                            "USER_UPDATE",
+                            "USER_DELETE",
+                            "JOBPOSTING_CREATE",
+                            "JOBPOSTING_UPDATE",
+                            "JOBPOSTING_DELETE",
+                            "JOBPOSTING_READ",
+                            "APPLICATION_CREATE",
+                            "APPLICATION_CANCEL",
+                            "APPLICATION_STATUS_CHANGE",
+                            "RESUME_CREATE",
+                            "RESUME_UPDATE",
+                            "RESUME_DELETE",
+                            "SCHEDULE_CREATE",
+                            "SCHEDULE_UPDATE",
+                            "SCHEDULE_CANCEL",
+                            "NOTIFICATION_READ",
+                            "API_REQUEST",
+                            "SYSTEM_ERROR",
+                            "UNKNOWN"
+                        ]
+                    },
+                    "httpMethod": {
+                        "type": "string"
+                    },
+                    "requestUri": {
+                        "type": "string"
+                    },
+                    "clientIp": {
+                        "type": "string"
+                    },
+                    "userAgent": {
+                        "type": "string"
+                    },
+                    "httpStatus": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "executionTime": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "requestBody": {
+                        "type": "string"
+                    },
+                    "errorMessage": {
+                        "type": "string"
+                    }
+                }
+            },
+            "AuditResponse": {
+                "type": "object",
+                "properties": {
+                    "auditId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "userId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "userEmail": {
+                        "type": "string"
+                    },
+                    "serviceName": {
+                        "type": "string"
+                    },
+                    "eventType": {
+                        "type": "string",
+                        "enum": [
+                            "LOGIN",
+                            "LOGOUT",
+                            "LOGIN_FAILED",
+                            "USER_CREATE",
+                            "USER_UPDATE",
+                            "USER_DELETE",
+                            "JOBPOSTING_CREATE",
+                            "JOBPOSTING_UPDATE",
+                            "JOBPOSTING_DELETE",
+                            "JOBPOSTING_READ",
+                            "APPLICATION_CREATE",
+                            "APPLICATION_CANCEL",
+                            "APPLICATION_STATUS_CHANGE",
+                            "RESUME_CREATE",
+                            "RESUME_UPDATE",
+                            "RESUME_DELETE",
+                            "SCHEDULE_CREATE",
+                            "SCHEDULE_UPDATE",
+                            "SCHEDULE_CANCEL",
+                            "NOTIFICATION_READ",
+                            "API_REQUEST",
+                            "SYSTEM_ERROR",
+                            "UNKNOWN"
+                        ]
+                    },
+                    "eventTypeName": {
+                        "type": "string"
+                    },
+                    "httpMethod": {
+                        "type": "string"
+                    },
+                    "requestUri": {
+                        "type": "string"
+                    },
+                    "clientIp": {
+                        "type": "string"
+                    },
+                    "userAgent": {
+                        "type": "string"
+                    },
+                    "httpStatus": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "executionTime": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "requestBody": {
+                        "type": "string"
+                    },
+                    "errorMessage": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "BaseResponseAuditResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/AuditResponse"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "AuditPageResponse": {
+                "type": "object",
+                "properties": {
+                    "audits": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AuditResponse"
+                        }
+                    },
+                    "totalCount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "page": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalPages": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "hasNext": {
+                        "type": "boolean"
+                    },
+                    "hasPrevious": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "BaseResponseAuditPageResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/AuditPageResponse"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "BaseResponseListAuditResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AuditResponse"
+                        }
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "AuditStatsResponse": {
+                "type": "object",
+                "properties": {
+                    "totalRequests": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "errorCount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "uniqueUsers": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "avgExecutionTime": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "mostActiveService": {
+                        "type": "string"
+                    },
+                    "mostFrequentEvent": {
+                        "type": "string",
+                        "enum": [
+                            "LOGIN",
+                            "LOGOUT",
+                            "LOGIN_FAILED",
+                            "USER_CREATE",
+                            "USER_UPDATE",
+                            "USER_DELETE",
+                            "JOBPOSTING_CREATE",
+                            "JOBPOSTING_UPDATE",
+                            "JOBPOSTING_DELETE",
+                            "JOBPOSTING_READ",
+                            "APPLICATION_CREATE",
+                            "APPLICATION_CANCEL",
+                            "APPLICATION_STATUS_CHANGE",
+                            "RESUME_CREATE",
+                            "RESUME_UPDATE",
+                            "RESUME_DELETE",
+                            "SCHEDULE_CREATE",
+                            "SCHEDULE_UPDATE",
+                            "SCHEDULE_CANCEL",
+                            "NOTIFICATION_READ",
+                            "API_REQUEST",
+                            "SYSTEM_ERROR",
+                            "UNKNOWN"
+                        ]
+                    }
+                }
+            },
+            "BaseResponseAuditStatsResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/AuditStatsResponse"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,1936 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "CoreBridge - apply-service",
+        "description": "CoreBridge MSA - apply-service API \uba85\uc138",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8009",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/api/v1/processes/company/stats": {
+            "post": {
+                "tags": [
+                    "process-controller"
+                ],
+                "operationId": "getCompanyStats",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseCompanyStatsResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/applies": {
+            "post": {
+                "tags": [
+                    "apply-controller"
+                ],
+                "operationId": "apply",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseApplyAcceptedResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/applies/company/stats": {
+            "post": {
+                "tags": [
+                    "apply-controller"
+                ],
+                "operationId": "getCompanyStats_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseCompanyStatsResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/ai-matching/skill-gap": {
+            "post": {
+                "tags": [
+                    "ai-matching-controller"
+                ],
+                "operationId": "analyzeSkillGap",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SkillGapRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseSkillGapResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/ai-matching/score": {
+            "post": {
+                "tags": [
+                    "ai-matching-controller"
+                ],
+                "operationId": "scoreCandidate",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ScoreRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseScoreResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/ai-matching/match": {
+            "post": {
+                "tags": [
+                    "ai-matching-controller"
+                ],
+                "operationId": "matchCandidates",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MatchCandidatesRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseMatchCandidatesResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/ai-matching/match-jobpostings": {
+            "post": {
+                "tags": [
+                    "ai-matching-controller"
+                ],
+                "operationId": "matchJobpostings",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MatchJobpostingsRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseMatchJobpostingsResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/processes/{processId}/transition": {
+            "patch": {
+                "tags": [
+                    "process-controller"
+                ],
+                "operationId": "transition",
+                "parameters": [
+                    {
+                        "name": "processId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransitionRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseProcessResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/processes/applies/{applyId}/transition": {
+            "patch": {
+                "tags": [
+                    "process-controller"
+                ],
+                "operationId": "transitionByApply",
+                "parameters": [
+                    {
+                        "name": "applyId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransitionRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseProcessResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/applies/{applyId}/memo": {
+            "patch": {
+                "tags": [
+                    "apply-controller"
+                ],
+                "operationId": "updateMemo",
+                "parameters": [
+                    {
+                        "name": "applyId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateMemoRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseApplyDetailResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/processes/{processId}": {
+            "get": {
+                "tags": [
+                    "process-controller"
+                ],
+                "operationId": "read",
+                "parameters": [
+                    {
+                        "name": "processId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseProcessResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/processes/{processId}/history": {
+            "get": {
+                "tags": [
+                    "process-controller"
+                ],
+                "operationId": "getHistory",
+                "parameters": [
+                    {
+                        "name": "processId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseListHistoryResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/processes/users/{userId}": {
+            "get": {
+                "tags": [
+                    "process-controller"
+                ],
+                "operationId": "getByUser",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseProcessPageResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/processes/users/{userId}/stats": {
+            "get": {
+                "tags": [
+                    "process-controller"
+                ],
+                "operationId": "getUserStats",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseUserStatsResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/processes/steps": {
+            "get": {
+                "tags": [
+                    "process-controller"
+                ],
+                "operationId": "getAllSteps",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseListStepInfoResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/processes/jobpostings/{jobpostingId}": {
+            "get": {
+                "tags": [
+                    "process-controller"
+                ],
+                "operationId": "getByJobposting",
+                "parameters": [
+                    {
+                        "name": "jobpostingId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseProcessPageResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/processes/jobpostings/{jobpostingId}/steps/{step}": {
+            "get": {
+                "tags": [
+                    "process-controller"
+                ],
+                "operationId": "getByJobpostingAndStep",
+                "parameters": [
+                    {
+                        "name": "jobpostingId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "step",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "APPLIED",
+                                "DOCUMENT_REVIEW",
+                                "DOCUMENT_PASS",
+                                "DOCUMENT_FAIL",
+                                "CODING_TEST",
+                                "CODING_PASS",
+                                "CODING_FAIL",
+                                "INTERVIEW_1",
+                                "INTERVIEW_1_PASS",
+                                "INTERVIEW_1_FAIL",
+                                "INTERVIEW_2",
+                                "INTERVIEW_2_PASS",
+                                "INTERVIEW_2_FAIL",
+                                "FINAL_REVIEW",
+                                "FINAL_PASS",
+                                "FINAL_FAIL"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseProcessPageResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/processes/jobpostings/{jobpostingId}/stats": {
+            "get": {
+                "tags": [
+                    "process-controller"
+                ],
+                "operationId": "getJobpostingStats",
+                "parameters": [
+                    {
+                        "name": "jobpostingId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseCompanyStatsResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/processes/applies/{applyId}": {
+            "get": {
+                "tags": [
+                    "process-controller"
+                ],
+                "operationId": "readByApply",
+                "parameters": [
+                    {
+                        "name": "applyId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseProcessResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/processes/applies/{applyId}/history": {
+            "get": {
+                "tags": [
+                    "process-controller"
+                ],
+                "operationId": "getHistoryByApply",
+                "parameters": [
+                    {
+                        "name": "applyId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseListHistoryResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/applies/{applyId}": {
+            "get": {
+                "tags": [
+                    "apply-controller"
+                ],
+                "operationId": "read_1",
+                "parameters": [
+                    {
+                        "name": "applyId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseApplyDetailResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/applies/{applyId}/history": {
+            "get": {
+                "tags": [
+                    "apply-controller"
+                ],
+                "operationId": "getHistory_1",
+                "parameters": [
+                    {
+                        "name": "applyId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseListHistoryResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/applies/users/{userId}": {
+            "get": {
+                "tags": [
+                    "apply-controller"
+                ],
+                "operationId": "getMyApplies",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseApplyPageResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/applies/users/{userId}/stats": {
+            "get": {
+                "tags": [
+                    "apply-controller"
+                ],
+                "operationId": "getUserStats_1",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseUserStatsResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/applies/jobpostings/{jobpostingId}": {
+            "get": {
+                "tags": [
+                    "apply-controller"
+                ],
+                "operationId": "getAppliesByJobposting",
+                "parameters": [
+                    {
+                        "name": "jobpostingId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseApplyPageResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/applies/jobpostings/{jobpostingId}/steps/{step}": {
+            "get": {
+                "tags": [
+                    "apply-controller"
+                ],
+                "operationId": "getAppliesByStep",
+                "parameters": [
+                    {
+                        "name": "jobpostingId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "step",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "APPLIED",
+                                "DOCUMENT_REVIEW",
+                                "DOCUMENT_PASS",
+                                "DOCUMENT_FAIL",
+                                "CODING_TEST",
+                                "CODING_PASS",
+                                "CODING_FAIL",
+                                "INTERVIEW_1",
+                                "INTERVIEW_1_PASS",
+                                "INTERVIEW_1_FAIL",
+                                "INTERVIEW_2",
+                                "INTERVIEW_2_PASS",
+                                "INTERVIEW_2_FAIL",
+                                "FINAL_REVIEW",
+                                "FINAL_PASS",
+                                "FINAL_FAIL"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseApplyPageResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/applies/jobpostings/{jobpostingId}/stats": {
+            "get": {
+                "tags": [
+                    "apply-controller"
+                ],
+                "operationId": "getJobpostingStats_1",
+                "parameters": [
+                    {
+                        "name": "jobpostingId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseCompanyStatsResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/applies/{applyId}/users/{userId}": {
+            "delete": {
+                "tags": [
+                    "apply-controller"
+                ],
+                "operationId": "cancel",
+                "parameters": [
+                    {
+                        "name": "applyId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseVoid"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BaseResponseCompanyStatsResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/CompanyStatsResponse"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "CompanyStatsResponse": {
+                "type": "object",
+                "properties": {
+                    "totalApplicants": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "pendingApplicants": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "interviewingApplicants": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "passedApplicants": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "failedApplicants": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "passRate": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                }
+            },
+            "CreateRequest": {
+                "type": "object",
+                "properties": {
+                    "jobpostingId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "userId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "resumeId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "coverLetter": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ApplyAcceptedResponse": {
+                "type": "object",
+                "properties": {
+                    "jobpostingId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "userId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "BaseResponseApplyAcceptedResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/ApplyAcceptedResponse"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "SkillGapRequest": {
+                "type": "object",
+                "properties": {
+                    "candidateId": {
+                        "type": "string"
+                    },
+                    "jobpostingId": {
+                        "type": "string"
+                    }
+                }
+            },
+            "BaseResponseSkillGapResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/SkillGapResponse"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "SkillGapResponse": {
+                "type": "object",
+                "properties": {
+                    "candidateId": {
+                        "type": "string"
+                    },
+                    "jobpostingId": {
+                        "type": "string"
+                    },
+                    "candidateSkills": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "requiredSkills": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "matchedSkills": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "missingSkills": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "matchRate": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "cosineSimilarity": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                }
+            },
+            "ScoreRequest": {
+                "type": "object",
+                "properties": {
+                    "candidateId": {
+                        "type": "string"
+                    },
+                    "jdText": {
+                        "type": "string"
+                    },
+                    "requiredSkills": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "BaseResponseScoreResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/ScoreResponse"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "ScoreDetail": {
+                "type": "object",
+                "properties": {
+                    "skillScore": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "similarityScore": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "bonusScore": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "totalScore": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "grade": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ScoreResponse": {
+                "type": "object",
+                "properties": {
+                    "candidateId": {
+                        "type": "string"
+                    },
+                    "requiredSkills": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "candidateSkills": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "cosineSimilarity": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "scoreDetail": {
+                        "$ref": "#/components/schemas/ScoreDetail"
+                    }
+                }
+            },
+            "MatchCandidatesRequest": {
+                "type": "object",
+                "properties": {
+                    "jdText": {
+                        "type": "string"
+                    },
+                    "requiredSkills": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "topK": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "BaseResponseMatchCandidatesResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/MatchCandidatesResponse"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "MatchCandidatesResponse": {
+                "type": "object",
+                "properties": {
+                    "matches": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MatchedCandidate"
+                        }
+                    },
+                    "totalCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "MatchedCandidate": {
+                "type": "object",
+                "properties": {
+                    "candidateId": {
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "string"
+                    },
+                    "resumeId": {
+                        "type": "string"
+                    },
+                    "score": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "skills": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "MatchJobpostingsRequest": {
+                "type": "object",
+                "properties": {
+                    "resumeText": {
+                        "type": "string"
+                    },
+                    "topK": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "BaseResponseMatchJobpostingsResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/MatchJobpostingsResponse"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "MatchJobpostingsResponse": {
+                "type": "object",
+                "properties": {
+                    "matches": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MatchedJobposting"
+                        }
+                    },
+                    "totalCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "MatchedJobposting": {
+                "type": "object",
+                "properties": {
+                    "jobpostingId": {
+                        "type": "string"
+                    },
+                    "score": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "title": {
+                        "type": "string"
+                    }
+                }
+            },
+            "TransitionRequest": {
+                "type": "object",
+                "properties": {
+                    "nextStep": {
+                        "type": "string",
+                        "enum": [
+                            "APPLIED",
+                            "DOCUMENT_REVIEW",
+                            "DOCUMENT_PASS",
+                            "DOCUMENT_FAIL",
+                            "CODING_TEST",
+                            "CODING_PASS",
+                            "CODING_FAIL",
+                            "INTERVIEW_1",
+                            "INTERVIEW_1_PASS",
+                            "INTERVIEW_1_FAIL",
+                            "INTERVIEW_2",
+                            "INTERVIEW_2_PASS",
+                            "INTERVIEW_2_FAIL",
+                            "FINAL_REVIEW",
+                            "FINAL_PASS",
+                            "FINAL_FAIL"
+                        ]
+                    },
+                    "changedBy": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "reason": {
+                        "type": "string"
+                    },
+                    "note": {
+                        "type": "string"
+                    }
+                }
+            },
+            "BaseResponseProcessResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/ProcessResponse"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "ProcessResponse": {
+                "type": "object",
+                "properties": {
+                    "processId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "applyId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "jobpostingId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "userId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "currentStep": {
+                        "type": "string",
+                        "enum": [
+                            "APPLIED",
+                            "DOCUMENT_REVIEW",
+                            "DOCUMENT_PASS",
+                            "DOCUMENT_FAIL",
+                            "CODING_TEST",
+                            "CODING_PASS",
+                            "CODING_FAIL",
+                            "INTERVIEW_1",
+                            "INTERVIEW_1_PASS",
+                            "INTERVIEW_1_FAIL",
+                            "INTERVIEW_2",
+                            "INTERVIEW_2_PASS",
+                            "INTERVIEW_2_FAIL",
+                            "FINAL_REVIEW",
+                            "FINAL_PASS",
+                            "FINAL_FAIL"
+                        ]
+                    },
+                    "currentStepName": {
+                        "type": "string"
+                    },
+                    "previousStep": {
+                        "type": "string",
+                        "enum": [
+                            "APPLIED",
+                            "DOCUMENT_REVIEW",
+                            "DOCUMENT_PASS",
+                            "DOCUMENT_FAIL",
+                            "CODING_TEST",
+                            "CODING_PASS",
+                            "CODING_FAIL",
+                            "INTERVIEW_1",
+                            "INTERVIEW_1_PASS",
+                            "INTERVIEW_1_FAIL",
+                            "INTERVIEW_2",
+                            "INTERVIEW_2_PASS",
+                            "INTERVIEW_2_FAIL",
+                            "FINAL_REVIEW",
+                            "FINAL_PASS",
+                            "FINAL_FAIL"
+                        ]
+                    },
+                    "previousStepName": {
+                        "type": "string"
+                    },
+                    "allowedNextSteps": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "uniqueItems": true
+                    },
+                    "completed": {
+                        "type": "boolean"
+                    },
+                    "passed": {
+                        "type": "boolean"
+                    },
+                    "failed": {
+                        "type": "boolean"
+                    },
+                    "stepChangedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "UpdateMemoRequest": {
+                "type": "object",
+                "properties": {
+                    "memo": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ApplyDetailResponse": {
+                "type": "object",
+                "properties": {
+                    "applyId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "jobpostingId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "userId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "resumeId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "coverLetter": {
+                        "type": "string"
+                    },
+                    "memo": {
+                        "type": "string"
+                    },
+                    "appliedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "processId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "currentStep": {
+                        "type": "string",
+                        "enum": [
+                            "APPLIED",
+                            "DOCUMENT_REVIEW",
+                            "DOCUMENT_PASS",
+                            "DOCUMENT_FAIL",
+                            "CODING_TEST",
+                            "CODING_PASS",
+                            "CODING_FAIL",
+                            "INTERVIEW_1",
+                            "INTERVIEW_1_PASS",
+                            "INTERVIEW_1_FAIL",
+                            "INTERVIEW_2",
+                            "INTERVIEW_2_PASS",
+                            "INTERVIEW_2_FAIL",
+                            "FINAL_REVIEW",
+                            "FINAL_PASS",
+                            "FINAL_FAIL"
+                        ]
+                    },
+                    "currentStepName": {
+                        "type": "string"
+                    },
+                    "previousStep": {
+                        "type": "string",
+                        "enum": [
+                            "APPLIED",
+                            "DOCUMENT_REVIEW",
+                            "DOCUMENT_PASS",
+                            "DOCUMENT_FAIL",
+                            "CODING_TEST",
+                            "CODING_PASS",
+                            "CODING_FAIL",
+                            "INTERVIEW_1",
+                            "INTERVIEW_1_PASS",
+                            "INTERVIEW_1_FAIL",
+                            "INTERVIEW_2",
+                            "INTERVIEW_2_PASS",
+                            "INTERVIEW_2_FAIL",
+                            "FINAL_REVIEW",
+                            "FINAL_PASS",
+                            "FINAL_FAIL"
+                        ]
+                    },
+                    "previousStepName": {
+                        "type": "string"
+                    },
+                    "allowedNextSteps": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "uniqueItems": true
+                    },
+                    "completed": {
+                        "type": "boolean"
+                    },
+                    "passed": {
+                        "type": "boolean"
+                    },
+                    "failed": {
+                        "type": "boolean"
+                    },
+                    "stepChangedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "BaseResponseApplyDetailResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/ApplyDetailResponse"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "BaseResponseListHistoryResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/HistoryResponse"
+                        }
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "HistoryResponse": {
+                "type": "object",
+                "properties": {
+                    "historyId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "processId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "applyId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "fromStep": {
+                        "type": "string",
+                        "enum": [
+                            "APPLIED",
+                            "DOCUMENT_REVIEW",
+                            "DOCUMENT_PASS",
+                            "DOCUMENT_FAIL",
+                            "CODING_TEST",
+                            "CODING_PASS",
+                            "CODING_FAIL",
+                            "INTERVIEW_1",
+                            "INTERVIEW_1_PASS",
+                            "INTERVIEW_1_FAIL",
+                            "INTERVIEW_2",
+                            "INTERVIEW_2_PASS",
+                            "INTERVIEW_2_FAIL",
+                            "FINAL_REVIEW",
+                            "FINAL_PASS",
+                            "FINAL_FAIL"
+                        ]
+                    },
+                    "fromStepName": {
+                        "type": "string"
+                    },
+                    "toStep": {
+                        "type": "string",
+                        "enum": [
+                            "APPLIED",
+                            "DOCUMENT_REVIEW",
+                            "DOCUMENT_PASS",
+                            "DOCUMENT_FAIL",
+                            "CODING_TEST",
+                            "CODING_PASS",
+                            "CODING_FAIL",
+                            "INTERVIEW_1",
+                            "INTERVIEW_1_PASS",
+                            "INTERVIEW_1_FAIL",
+                            "INTERVIEW_2",
+                            "INTERVIEW_2_PASS",
+                            "INTERVIEW_2_FAIL",
+                            "FINAL_REVIEW",
+                            "FINAL_PASS",
+                            "FINAL_FAIL"
+                        ]
+                    },
+                    "toStepName": {
+                        "type": "string"
+                    },
+                    "changedBy": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "reason": {
+                        "type": "string"
+                    },
+                    "note": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "BaseResponseProcessPageResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/ProcessPageResponse"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "ProcessPageResponse": {
+                "type": "object",
+                "properties": {
+                    "processes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProcessResponse"
+                        }
+                    },
+                    "processCount": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "BaseResponseUserStatsResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/UserStatsResponse"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "UserStatsResponse": {
+                "type": "object",
+                "properties": {
+                    "totalProcesses": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "pendingProcesses": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "passedProcesses": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "failedProcesses": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "passRate": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                }
+            },
+            "BaseResponseListStepInfoResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/StepInfoResponse"
+                        }
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "StepInfoResponse": {
+                "type": "object",
+                "properties": {
+                    "step": {
+                        "type": "string",
+                        "enum": [
+                            "APPLIED",
+                            "DOCUMENT_REVIEW",
+                            "DOCUMENT_PASS",
+                            "DOCUMENT_FAIL",
+                            "CODING_TEST",
+                            "CODING_PASS",
+                            "CODING_FAIL",
+                            "INTERVIEW_1",
+                            "INTERVIEW_1_PASS",
+                            "INTERVIEW_1_FAIL",
+                            "INTERVIEW_2",
+                            "INTERVIEW_2_PASS",
+                            "INTERVIEW_2_FAIL",
+                            "FINAL_REVIEW",
+                            "FINAL_PASS",
+                            "FINAL_FAIL"
+                        ]
+                    },
+                    "displayName": {
+                        "type": "string"
+                    },
+                    "allowedNextSteps": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "uniqueItems": true
+                    },
+                    "terminal": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "ApplyPageResponse": {
+                "type": "object",
+                "properties": {
+                    "applies": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ApplyDetailResponse"
+                        }
+                    },
+                    "totalCount": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "BaseResponseApplyPageResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/ApplyPageResponse"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "BaseResponseVoid": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "object"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            }
+        }
+    }
+}

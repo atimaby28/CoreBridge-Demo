@@ -1,0 +1,242 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "CoreBridge - jobposting-hot-service",
+        "description": "CoreBridge MSA - jobposting-hot-service API \uba85\uc138",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8006",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/api/v1/jobposting-hot/update-all": {
+            "post": {
+                "tags": [
+                    "jobposting-hot-controller"
+                ],
+                "operationId": "updateAll",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseInteger"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/jobposting-hot/register/{jobpostingId}": {
+            "post": {
+                "tags": [
+                    "jobposting-hot-controller"
+                ],
+                "operationId": "register",
+                "parameters": [
+                    {
+                        "name": "jobpostingId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/jobposting-hot/boards/{boardId}/update": {
+            "post": {
+                "tags": [
+                    "jobposting-hot-controller"
+                ],
+                "operationId": "updateByBoard",
+                "parameters": [
+                    {
+                        "name": "boardId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseInteger"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/jobposting-hot/today": {
+            "get": {
+                "tags": [
+                    "jobposting-hot-controller"
+                ],
+                "operationId": "readToday",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseListResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/jobposting-hot/date/{dateStr}": {
+            "get": {
+                "tags": [
+                    "jobposting-hot-controller"
+                ],
+                "operationId": "readByDate",
+                "parameters": [
+                    {
+                        "name": "dateStr",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseListResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BaseResponseInteger": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "BaseResponseResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/Response"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Response": {
+                "type": "object",
+                "properties": {
+                    "jobpostingId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "boardId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "likeCount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "commentCount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "viewCount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "score": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                }
+            },
+            "BaseResponseListResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Response"
+                        }
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            }
+        }
+    }
+}
